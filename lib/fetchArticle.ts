@@ -9,7 +9,7 @@ export async function fetchAllArticle(
       `/articles?offset=${offset}&limit=${limit}&order=${order}&status=${status}`,
     {
       next: {
-        revalidate: 10,
+        revalidate: 0,
       },
     }
   );
@@ -21,7 +21,7 @@ export async function fetchArticle(slug: string) {
     process.env.SERVER_API + "/articles?slug=" + slug,
     {
       next: {
-        revalidate: 10,
+        revalidate: 0,
       },
     }
   );

@@ -62,7 +62,7 @@ export default function ArticleLists({ articles: serverArticles }: Props) {
         setIsSearch(true);
         fetch(process.env.SERVER_API + "/articles?q=" + search, {
           next: {
-            revalidate: 10,
+            revalidate: 0,
           },
         })
           .then((response) => response.json())
