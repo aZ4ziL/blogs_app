@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="id">
       <body
         className="min-h-screen flex flex-col bg-white dark:bg-gray-900 dark:text-white"
         style={inter.style}
