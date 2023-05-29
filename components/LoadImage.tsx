@@ -9,9 +9,17 @@ interface LoadImageProps {
   image: StaticImageData | string;
   alt: string;
   className?: string;
+  width: number;
+  height: number;
 }
 
-export default function LoadImage({ image, alt, className }: LoadImageProps) {
+export default function LoadImage({
+  image,
+  alt,
+  className,
+  width,
+  height,
+}: LoadImageProps) {
   const [isComplete, setIsComplete] = useState<boolean>(false);
 
   return (
@@ -19,11 +27,13 @@ export default function LoadImage({ image, alt, className }: LoadImageProps) {
       <Image
         src={image}
         alt={alt}
-        width={2200}
-        height={2200}
+        width={width}
+        height={height}
         className={className}
         placeholder="blur"
-        blurDataURL="/blur.jpg"
+        blurDataURL="/blur.png"
+        loading="lazy"
+        quality={100}
         onLoadingComplete={() => setIsComplete(true)}
       />
       <div

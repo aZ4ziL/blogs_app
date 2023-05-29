@@ -1,7 +1,7 @@
+import LoadImage from "@/components/LoadImage";
 import Markdown from "@/components/Markdown";
 import { fetchArticle } from "@/lib/fetchArticle";
 import { Metadata, ResolvingMetadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface BlogSlugProps {
@@ -51,14 +51,12 @@ export default async function BlogSlug({ params }: BlogSlugProps) {
         </div>
         {article.logo !== "" && (
           <div className="flex items-center justify-center my-5">
-            <Image
-              src={process.env.SERVER_API + article.logo}
+            <LoadImage
+              image={process.env.SERVER_API + article.logo}
               alt={article.title}
               width={2200}
               height={880}
               className="w-auto h-[300px]"
-              placeholder="blur"
-              blurDataURL="/blur.jpg"
             />
           </div>
         )}
