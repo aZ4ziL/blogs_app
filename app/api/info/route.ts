@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
 const data = {
-  title: "Hi, I'am Fajri Fath",
+  title: "Hay, Saya Fajri Fath",
   description:
-    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero adipisci explicabo consectetur laborum magnam. Velit corrupti molestias est a odio!",
+    "Saya adalah seorang full-stack developer yang menyukai dunia pemrograman karena hobi.",
 };
 
 export function GET() {
