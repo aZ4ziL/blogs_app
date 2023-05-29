@@ -8,7 +8,9 @@ export async function fetchAllArticle(
     process.env.SERVER_API +
       `/articles?offset=${offset}&limit=${limit}&order=${order}&status=${status}`,
     {
-      cache: "no-store",
+      next: {
+        revalidate: 10,
+      },
     }
   );
   return await response.json();
@@ -18,7 +20,9 @@ export async function fetchArticle(slug: string) {
   const response = await fetch(
     process.env.SERVER_API + "/articles?slug=" + slug,
     {
-      cache: "no-store",
+      next: {
+        revalidate: 10,
+      },
     }
   );
 
