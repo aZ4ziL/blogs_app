@@ -69,6 +69,8 @@ export default function Overview() {
                 <LoadImage
                   image="/avatar.webp"
                   alt="img"
+                  width={2200}
+                  height={880}
                   className="w-full h-[300px]"
                 />
                 <div className="p-4">
