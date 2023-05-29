@@ -1,37 +1,26 @@
 export async function fetchAllArticle(
-  status: string,
+  status: "PUBLISHED" | "DRAFTED",
   offset: number,
   limit: number,
-  token?: string,
-  order?: "desc" | "asc"
+  order: "desc" | "asc"
 ) {
-  if (typeof token === "undefined") {
-    const response = await fetch(
-      process.env.SERVER_API +
-        `/articles?status=${status}&offset=${offset}&limit=${limit}&order=${order}`,
-      {
-        cache: "no-store",
-      }
-    );
-
-    return await response.json();
-  } else {
-    const response = await fetch(
-      process.env.SERVER_API +
-        `/articles?status=${status}&offset=${offset}&limit=${limit}&token=${token}&order=${order}`,
-      {
-        cache: "no-store",
-      }
-    );
-
-    return await response.json();
-  }
+  const response = await fetch(
+    process.env.SERVER_API +
+      `/articles?offset=${offset}&limit=${limit}&order=${order}&status=${status}`,
+    {
+      cache: "no-store",
+    }
+  );
+  return await response.json();
 }
 
-export async function fetchArticle(id: string) {
-  const response = await fetch(process.env.SERVER_API + "/articles?id=" + id, {
-    cache: "no-store",
-  });
+export async function fetchArticle(slug: string) {
+  const response = await fetch(
+    process.env.SERVER_API + "/articles?slug=" + slug,
+    {
+      cache: "no-store",
+    }
+  );
 
   if (response.status === 404) {
     return null;

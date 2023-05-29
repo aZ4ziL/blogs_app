@@ -12,9 +12,9 @@ export async function generateMetadata(
   { params }: BlogSlugProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const id = params.slug;
+  const slug = params.slug;
 
-  const article = await fetchArticle(id);
+  const article = await fetchArticle(slug);
 
   if (!article) {
     notFound();

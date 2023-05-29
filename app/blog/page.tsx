@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Blog() {
-  const articles = await fetchAllArticle("PUBLISHED", 0, 4, undefined, "desc");
+  const articles = await fetchAllArticle("PUBLISHED", 0, 4, "desc");
 
   return (
     <>

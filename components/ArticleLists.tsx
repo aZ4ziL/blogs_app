@@ -52,7 +52,7 @@ export default function ArticleLists({ articles: serverArticles }: Props) {
   const handleLoadMore = () => {
     setIsLoading(true);
     setOffset((value: number) => value + 4);
-    fetchAllArticle("PUBLISHED", offset, 4, undefined, "desc").then((data) => {
+    fetchAllArticle("PUBLISHED", offset, 4, "desc").then((data) => {
       if (data.length == 0) {
         setIsEmpty(true);
       } else {
@@ -76,7 +76,7 @@ export default function ArticleLists({ articles: serverArticles }: Props) {
               </span>
             </div>
             <div className="w-full">
-              <Link href={`/blog/${value.id}`} className="text-2xl font-bold">
+              <Link href={`/blog/${value.slug}`} className="text-2xl font-bold">
                 {value.title}
               </Link>
               <div className="flex items-center gap-2 mb-3">
