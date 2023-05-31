@@ -130,6 +130,7 @@ export default function ArticleLists({ articles: serverArticles }: Props) {
                   </div>
                   <div className="w-full">
                     <Link
+                      id="nextjs-links"
                       href={`/blog/${value.slug}`}
                       prefetch={false}
                       className="text-2xl font-bold"
@@ -172,6 +173,7 @@ export default function ArticleLists({ articles: serverArticles }: Props) {
                 </div>
                 <div className="w-full">
                   <Link
+                    id="nextjs-links"
                     href={`/blog/${value.slug}`}
                     prefetch={false}
                     className="text-2xl font-bold"
