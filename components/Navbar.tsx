@@ -79,7 +79,7 @@ export default function Navbar() {
   });
 
   useEffect(() => {
-    const navbarLinks = document.querySelectorAll("#navbar-links");
+    const navbarLinks = document.querySelectorAll("#nextjs-links");
     navbarLinks.forEach((value: Element, _key: number) => {
       value?.addEventListener("click", () => {
         setShow(false);
@@ -165,7 +165,7 @@ export default function Navbar() {
                 </div>
                 <li>
                   <Link
-                    id="navbar-links"
+                    id="nextjs-links"
                     href="/"
                     className="text-sm font-bold text-gray-800 dark:text-gray-300 hover:text-sky-600"
                   >
@@ -174,7 +174,7 @@ export default function Navbar() {
                 </li>
                 <li>
                   <Link
-                    id="navbar-links"
+                    id="nextjs-links"
                     href="/blog"
                     className="text-sm font-bold text-gray-800 dark:text-gray-300 hover:text-sky-600"
                   >
@@ -183,7 +183,7 @@ export default function Navbar() {
                 </li>
                 <li>
                   <Link
-                    id="navbar-links"
+                    id="nextjs-links"
                     href="/tags"
                     className="text-sm font-bold text-gray-800 dark:text-gray-300 hover:text-sky-600"
                   >
@@ -192,7 +192,7 @@ export default function Navbar() {
                 </li>
                 <li>
                   <Link
-                    id="navbar-links"
+                    id="nextjs-links"
                     href="/about"
                     className="text-sm font-bold text-gray-800 dark:text-gray-300 hover:text-sky-600"
                   >
@@ -202,7 +202,7 @@ export default function Navbar() {
                 {isLogined && (
                   <li>
                     <Link
-                      id="navbar-links"
+                      id="nextjs-links"
                       href="/dashboard"
                       className="text-sm font-bold text-gray-800 dark:text-gray-300 hover:text-sky-600"
                     >
@@ -222,7 +222,6 @@ export default function Navbar() {
                   <>
                     <li>
                       <button
-                        id="navbar-links"
                         type="button"
                         onClick={() => setShowModalAuthLogin(true)}
                         className="px-3 py-1 text-sm text-white bg-sky-600 hover:bg-sky-700 rounded w-full md:w-auto"
@@ -232,7 +231,6 @@ export default function Navbar() {
                     </li>
                     <li>
                       <button
-                        id="navbar-links"
                         type="button"
                         onClick={() => setShowModalAuthRegister(true)}
                         className="px-3 py-1 text-sm text-white bg-green-600 hover:bg-green-700 rounded w-full md:w-auto"
@@ -259,6 +257,7 @@ export default function Navbar() {
                 <div className="w-full flex items-center overflow-y-auto pt-2">
                   <Link
                     href="/dashboard"
+                    id="nextjs-links"
                     className={`text-gray-600 dark:text-gray-300 ${
                       pathname === "/dashboard"
                         ? "bg-gray-300 dark:bg-gray-600"
@@ -268,6 +267,7 @@ export default function Navbar() {
                     Ringkasan
                   </Link>
                   <Link
+                    id="nextjs-links"
                     href="/dashboard/earnings"
                     className={`text-gray-600 dark:text-gray-300 ${
                       pathname === "/dashboard/earnings"
@@ -278,6 +278,7 @@ export default function Navbar() {
                     Pendapatan
                   </Link>
                   <Link
+                    id="nextjs-links"
                     href="/dashboard/account"
                     className={`text-gray-600 dark:text-gray-300 ${
                       pathname === "/dashboard/account"
