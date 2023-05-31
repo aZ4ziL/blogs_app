@@ -1,5 +1,5 @@
+import LoadImage from "@/components/LoadImage";
 import { Metadata } from "next";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Tentang - Viper Code",
@@ -13,8 +13,8 @@ export default function About() {
 
       <div className="border-t border-t-gray-300 dark:border-t-gray-600 pt-5">
         <div className="w-full flex items-center flex-col justify-center">
-          <Image
-            src="/avatar.webp"
+          <LoadImage
+            image="/avatar.webp"
             alt="avatar"
             width={2200}
             height={880}

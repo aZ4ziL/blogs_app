@@ -1,12 +1,30 @@
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 export default function Loading() {
   return (
-    <div className="w-full h-screen">
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-        <FontAwesomeIcon icon={faSpinner} className="animate-spin" size="2x" />
+    <section
+      className="pt-[150px] animate-pulse"
+      style={{ animationDuration: "1s" }}
+    >
+      <div className="w-60 h-10 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+      <div className="flex flex-col items-start my-3">
+        <div className="flex flex-col items-center gap-1">
+          <div className="w-32 h-4 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+          <div className="w-32 h-4 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+        </div>
       </div>
-    </div>
+      <div className="pt-[50px] border-t border-t-gray-300 dark:border-t-gray-600 mb-4">
+        <div className="w-full h-2.5 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+        <div className="w-full h-2.5 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+        <div className="w-full h-2.5 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+        <div className="w-full h-2.5 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+        <div className="w-[80%] h-2.5 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+      </div>
+      <div className="pt-[50px] border-t border-t-gray-300 dark:border-t-gray-600 mb-4">
+        <div className="w-full h-2.5 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+        <div className="w-full h-2.5 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+        <div className="w-full h-2.5 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+        <div className="w-full h-2.5 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+        <div className="w-[80%] h-2.5 bg-gray-300 dark:bg-gray-600 rounded-full mb-2"></div>
+      </div>
+    </section>
   );
 }

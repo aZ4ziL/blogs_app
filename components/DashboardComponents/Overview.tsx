@@ -1,28 +1,38 @@
 "use client";
 
-import {
-  faComment,
-  faEye,
-  faThumbsUp,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Alert from "../Alert";
 import LoadImage from "../LoadImage";
 import Modal from "../Modal";
 import Tooltips from "../Tooltips";
 
-export default function Overview() {
+interface OverviewProps {
+  user: { [key: string]: any };
+  articles: [{ [key: string]: any }];
+}
+
+export default function Overview({ user, articles }: OverviewProps) {
   const [showModalAdd, setShowModalAdd] = useState<boolean>(false);
-  const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [_showAlert, setShowAlert] = useState<boolean>(false);
+
+  const router = useRouter();
 
   return (
     <>
       <section className="pt-[150px]">
         <div className="flex flex-col lg:flex-row items-start lg:items-center lg:justify-between">
           <div>
-            <h1 className="text-3xl font-bold">Ringkasan</h1>
+            <div className="flex items-center gap-2">
+              <h1 className="text-3xl font-bold">
+                {user.first_name} {user.last_name}
+              </h1>
+              <span className="text-xl text-gray-600 dark:text-gray-300 bg-gray-300 dark:bg-gray-600 px-2 py-1 rounded">
+                {user.username}
+              </span>
+            </div>
             <p className="text-sm text-sky-600 dark:text-sky-300 font-extralight">
               Halaman untuk melihat seluruh artikel anda.
             </p>
@@ -61,38 +71,35 @@ export default function Overview() {
         </div>
         <div className="mt-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[0, 1, 2, 3, 4, 5].map((_value, index) => (
-              <div
+            {articles?.map((value: any, index: number) => (
+              <Link
+                href={`/blog/${value.slug}`}
+                prefetch={false}
+                legacyBehavior
                 key={index}
-                className="border border-gray-300 dark:border-gray-600 rounded hover:shadow-md hover:shadow-gray-300 hover:dark:shadow-gray-600"
               >
-                <LoadImage
-                  image="/avatar.webp"
-                  alt="img"
-                  className="w-full h-[300px]"
-                />
-                <div className="p-4">
-                  <h5 className="text-xl font-bold mb-2">Title for article</h5>
-                  <p className="text-sm font-light">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Distinctio, dolor.
-                  </p>
-                  <div className="mt-4 flex items-center gap-3 text-sm">
+                <div className="border border-gray-300 dark:border-gray-600 rounded hover:shadow-md hover:shadow-gray-300 hover:dark:shadow-gray-600 cursor-pointer">
+                  <LoadImage
+                    image={process.env.SERVER_API + value.logo}
+                    alt="img"
+                    width={2200}
+                    height={880}
+                    className="w-full h-[300px] p-4"
+                  />
+                  <div className="p-4">
+                    <h5 className="text-xl font-bold mb-2">{value.title}</h5>
+                    <p className="text-sm font-light">
+                      {value.description.slice(0, 100)}...
+                    </p>
+                  </div>
+                  <div className="mt-auto p-4 flex items-center gap-3 text-sm">
                     <div className="flex items-center gap-2">
                       <FontAwesomeIcon icon={faEye} />
-                      <span>30</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <FontAwesomeIcon icon={faThumbsUp} />
-                      <span>102</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <FontAwesomeIcon icon={faComment} />
-                      <span>10</span>
+                      <span>{value.views}</span>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -179,10 +186,6 @@ export default function Overview() {
           </div>
         </form>
       </Modal>
-
-      <Alert show={showAlert} onClose={() => setShowAlert(false)}>
-        <p className="font-bold text-xl">Lorem ipsum dolor sit amet.</p>
-      </Alert>
     </>
   );
 }

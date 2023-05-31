@@ -1,3 +1,6 @@
+// @ts-nocheck
+import withPlaiceholder from "@plaiceholder/next";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
@@ -16,4 +19,5 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+// module.exports = withPlaiceholder(nextConfig);
+export default withPlaiceholder(nextConfig);

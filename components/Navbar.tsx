@@ -7,11 +7,13 @@ import {
   faX,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getCookie } from "cookies-next";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Container from "./Container";
-import ModalAuth from "./ModalAuth";
+import ModalAuthLogin from "./ModalAuthLogin";
+import ModalAuthRegister from "./ModalAuthRegister";
 
 export default function Navbar() {
   const [show, setShow] = useState<boolean>(false);
@@ -28,7 +30,22 @@ export default function Navbar() {
   const isBlogDetail = pathSplit.length > 2 && pathSplit[1] === "blog";
 
   // modal auth
-  const [showModalAuth, setShowModalAuth] = useState<boolean>(false);
+  const [showModalAuthLogin, setShowModalAuthLogin] = useState<boolean>(false);
+  const [showModalAuthRegister, setShowModalAuthRegister] =
+    useState<boolean>(false);
+
+  // check cookies if user is login
+  const [isLogined, setIsLogined] = useState<boolean>(false);
+
+  useEffect(() => {
+    const token = getCookie("token");
+
+    if (!token) {
+      setIsLogined(false);
+    } else {
+      setIsLogined(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (!linksRef.current) return;
@@ -182,6 +199,17 @@ export default function Navbar() {
                     Tentang
                   </Link>
                 </li>
+                {isLogined && (
+                  <li>
+                    <Link
+                      id="navbar-links"
+                      href="/dashboard"
+                      className="text-sm font-bold text-gray-800 dark:text-gray-300 hover:text-sky-600"
+                    >
+                      Dashboard
+                    </Link>
+                  </li>
+                )}
                 <li>
                   <button
                     onClick={() => setIsDark(!isDark)}
@@ -190,26 +218,39 @@ export default function Navbar() {
                     <FontAwesomeIcon icon={faMoon} />
                   </button>
                 </li>
-                <li>
-                  <button
-                    id="navbar-links"
-                    type="button"
-                    onClick={() => setShowModalAuth(true)}
-                    className="px-3 py-1 text-sm text-white bg-sky-600 hover:bg-sky-700 rounded w-full md:w-auto"
-                  >
-                    Login
-                  </button>
-                </li>
-                <li>
-                  <button
-                    id="navbar-links"
-                    type="button"
-                    onClick={() => setShowModalAuth(true)}
-                    className="px-3 py-1 text-sm text-white bg-green-600 hover:bg-green-700 rounded w-full md:w-auto"
-                  >
-                    Daftar
-                  </button>
-                </li>
+                {!isLogined ? (
+                  <>
+                    <li>
+                      <button
+                        id="navbar-links"
+                        type="button"
+                        onClick={() => setShowModalAuthLogin(true)}
+                        className="px-3 py-1 text-sm text-white bg-sky-600 hover:bg-sky-700 rounded w-full md:w-auto"
+                      >
+                        Login
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        id="navbar-links"
+                        type="button"
+                        onClick={() => setShowModalAuthRegister(true)}
+                        className="px-3 py-1 text-sm text-white bg-green-600 hover:bg-green-700 rounded w-full md:w-auto"
+                      >
+                        Daftar
+                      </button>
+                    </li>
+                  </>
+                ) : (
+                  <li>
+                    <a
+                      href="/logout"
+                      className="px-3 py-1 text-sm text-white bg-rose-600 hover:bg-rose-700 rounded w-full md:w-auto"
+                    >
+                      Logout
+                    </a>
+                  </li>
+                )}
               </ul>
             </div>
             {pathname.startsWith("/dashboard") && (
@@ -253,7 +294,15 @@ export default function Navbar() {
         </Container>
       </nav>
 
-      <ModalAuth show={showModalAuth} onClose={() => setShowModalAuth(false)} />
+      <ModalAuthLogin
+        show={showModalAuthLogin}
+        onClose={() => setShowModalAuthLogin(false)}
+      />
+
+      <ModalAuthRegister
+        show={showModalAuthRegister}
+        onClose={() => setShowModalAuthRegister(false)}
+      />
     </>
   );
 }
