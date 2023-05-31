@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import LoadingBarLinks from "@/components/LoadingBarLinks";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         className="min-h-screen flex flex-col bg-white dark:bg-gray-900 dark:text-white"
         style={inter.style}
       >
+        <LoadingBarLinks />
         <Navbar />
         <Container>{children}</Container>
         <Footer />

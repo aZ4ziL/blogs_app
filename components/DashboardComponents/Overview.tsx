@@ -3,7 +3,6 @@
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import LoadImage from "../LoadImage";
 import Modal from "../Modal";
@@ -17,8 +16,6 @@ interface OverviewProps {
 export default function Overview({ user, articles }: OverviewProps) {
   const [showModalAdd, setShowModalAdd] = useState<boolean>(false);
   const [_showAlert, setShowAlert] = useState<boolean>(false);
-
-  const router = useRouter();
 
   return (
     <>
@@ -73,6 +70,7 @@ export default function Overview({ user, articles }: OverviewProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {articles?.map((value: any, index: number) => (
               <Link
+                id="nextjs-links"
                 href={`/blog/${value.slug}`}
                 prefetch={false}
                 legacyBehavior
