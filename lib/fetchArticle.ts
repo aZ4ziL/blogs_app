@@ -32,3 +32,13 @@ export async function fetchArticle(slug: string) {
 
   return await response.json();
 }
+
+export async function fetchAllArticleByAuthorId(authorId: number, token: any) {
+  const response = await fetch(
+    process.env.SERVER_API + `/articles?authorId=${authorId}&token=${token}`
+  );
+
+  const result = await response.json();
+
+  return result;
+}

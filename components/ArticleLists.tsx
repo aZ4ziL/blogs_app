@@ -131,6 +131,7 @@ export default function ArticleLists({ articles: serverArticles }: Props) {
                   <div className="w-full">
                     <Link
                       href={`/blog/${value.slug}`}
+                      prefetch={false}
                       className="text-2xl font-bold"
                     >
                       {value.title}
@@ -172,6 +173,7 @@ export default function ArticleLists({ articles: serverArticles }: Props) {
                 <div className="w-full">
                   <Link
                     href={`/blog/${value.slug}`}
+                    prefetch={false}
                     className="text-2xl font-bold"
                   >
                     {value.title}
